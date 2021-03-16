@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
 
@@ -13,6 +14,6 @@ class SimpleWall extends StatefulWidget {
 class _SimpleWallState extends State<SimpleWall> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(color: Colors.blue,);
   }
 }
