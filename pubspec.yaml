@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_simple_dependency_injection: 1.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
