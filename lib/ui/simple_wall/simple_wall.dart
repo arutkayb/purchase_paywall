@@ -17,13 +17,13 @@ class SimpleWall extends StatelessWidget {
           child: Container(
             child: Column(
               children: <Widget>[
+                getBigTitle(),
                 Flexible(
-                  child: getBigTitle(),
-                ),
-                Flexible(
+                  flex: 5,
                     child: Image.network(
                         'https://aws1.discourse-cdn.com/mcneel/uploads/default/optimized/3X/8/4/8403f58a4af8c97f635586223454a6f29e9fc1dc_2_500x500.png')),
                 Flexible(
+                  flex: 2,
                   child: getPurchaseDescriptionTabs(),
                 ),
                 Padding(
@@ -34,6 +34,7 @@ class SimpleWall extends StatelessWidget {
                   ),
                 ),
                 Flexible(
+                  flex: 3,
                   child: getPurchaseButtons(),
                 ),
                 Container(
@@ -59,9 +60,7 @@ class SimpleWall extends StatelessWidget {
       color: Colors.yellow,
       child: Column(
         children: <Widget>[
-          Center(
-            child: getSubTitle(),
-          ),
+          getSubTitle(),
           getDescription(),
         ],
       ),
@@ -80,6 +79,7 @@ class SimpleWall extends StatelessWidget {
         child: Text(
           _basicWallModel.bigTitle,
           textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 42),
         ),
       ),
       color: Colors.purple,
@@ -90,7 +90,7 @@ class SimpleWall extends StatelessWidget {
     return FittedBox(
       fit: BoxFit.cover,
       child: Text(
-        _basicWallModel.wallDescriptions[0].subtitle,
+        _basicWallModel.wallDescriptions[0].title,
         textAlign: TextAlign.center,
       ),
     );
@@ -100,7 +100,7 @@ class SimpleWall extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       child: Text(
-        _basicWallModel.wallDescriptions[0].title,
+        _basicWallModel.wallDescriptions[0].description,
         textAlign: TextAlign.center,
       ),
       color: Colors.greenAccent,

@@ -10,7 +10,7 @@ class WallDescription {
   })  : _title = title,
         _description = description;
 
-  String get subtitle => _description;
+  String get description => _description;
 
   String get title => _title;
 }
