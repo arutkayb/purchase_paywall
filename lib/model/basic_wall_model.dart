@@ -1,8 +1,9 @@
 import 'package:purchase_paywall/model/purchase_button_model.dart';
+import 'package:purchase_paywall/model/wall_description.dart';
 
 class BasicWallModel {
   final String bigTitle;
-  final String subTitle;
+  final List<WallDescription> wallDescriptions;
   final String trialIndicator;
   final String privacyPolicyText;
   final String privacyPolicyUrl;
@@ -13,7 +14,7 @@ class BasicWallModel {
 
   BasicWallModel({
     this.bigTitle,
-    this.subTitle,
+    this.wallDescriptions,
     this.trialIndicator,
     this.privacyPolicyText,
     this.privacyPolicyUrl,

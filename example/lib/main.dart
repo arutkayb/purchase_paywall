@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
 import 'package:purchase_paywall/model/purchase_button_model.dart';
+import 'package:purchase_paywall/model/wall_description.dart';
 import 'package:purchase_paywall/purchase_paywall.dart';
 
 void main() {
@@ -22,7 +23,13 @@ class MyApp extends StatelessWidget {
 
   Widget getSimpleWall() {
     String bigTitle = 'Big Title';
-    String subTitle = 'Sub Title';
+    List<WallDescription> wallDescriptions = List()
+      ..add(
+        WallDescription(
+          title: 'Sub Title',
+          description: 'Description 1',
+        ),
+      );
     String trialIndicator = 'Start with a 1 week free trial.';
     String privacyPolicyText = 'Privacy Policy';
     String privacyPolicyUrl = '';
@@ -48,7 +55,7 @@ class MyApp extends StatelessWidget {
     return PurchasePayWall().getSimplePaywall(
       BasicWallModel(
         bigTitle: bigTitle,
-        subTitle: subTitle,
+        wallDescriptions: wallDescriptions,
         trialIndicator: trialIndicator,
         privacyPolicyText: privacyPolicyText,
         privacyPolicyUrl: privacyPolicyUrl,
