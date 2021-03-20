@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SimpleWall extends StatelessWidget {
   final BasicWallModel _basicWallModel;
-  SimpleWall(this._basicWallModel);
+  final ThemeData _themeData;
+  SimpleWall(this._basicWallModel, ThemeData theme) : this._themeData = theme;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,15 @@ class SimpleWall extends StatelessWidget {
                 Flexible(
                   child: getPurchaseButtons(),
                 ),
-                Flexible(
-                  child: Container(
-                    color: Colors.black54,
+                Container(
+                  padding: EdgeInsets.all(5),
+                  width: double.maxFinite,
+                  constraints: BoxConstraints(
+                    minHeight: 80,
+                    maxHeight: 100,
                   ),
+                  color: Colors.black54,
+                  child: getBottomInfo(context),
                 ),
               ],
             ),
@@ -97,6 +104,57 @@ class SimpleWall extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       color: Colors.greenAccent,
+    );
+  }
+
+  Widget getBottomInfo(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () async{
+                String url = _basicWallModel.privacyPolicyUrl;
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Cannot launch url';
+                }
+              },
+              child: Text(
+                _basicWallModel.privacyPolicyText,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            GestureDetector(
+              onTap: () async{
+                String url = _basicWallModel.termsOfUseUrl;
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Cannot launch url';
+                }
+              },
+              child: Text(
+                _basicWallModel.termsOfUseText,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Text(
+              _basicWallModel.bottomInfo,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

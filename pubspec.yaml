@@ -1,16 +1,17 @@
 name: purchase_paywall
 description: In-app purchase, subscription, purchase paywall page
 version: 0.0.1
-homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   flutter_simple_dependency_injection: 1.0.4
+  url_launcher: 6.0.2
+
 
 dev_dependencies:
   flutter_test:
