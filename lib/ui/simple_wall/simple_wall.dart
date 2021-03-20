@@ -44,7 +44,7 @@ class SimpleWall extends StatelessWidget {
                     maxHeight: 100,
                   ),
                   color: Colors.black54,
-                  child: getBottomInfo(context),
+                  child: getBottomInfo(),
                 ),
               ],
             ),
@@ -107,7 +107,7 @@ class SimpleWall extends StatelessWidget {
     );
   }
 
-  Widget getBottomInfo(BuildContext context) {
+  Widget getBottomInfo() {
     return Column(
       children: <Widget>[
         Row(
