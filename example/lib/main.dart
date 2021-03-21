@@ -12,18 +12,51 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = ThemeData.from(
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.yellow),
+      textTheme: GoogleFonts.pangolinTextTheme(
+        Theme.of(context).textTheme,
+      ),
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      theme: themeData,
+      home: Scaffold(
+        body: Center(
+          child: Builder(
+            builder: (BuildContext context) {
+              return ElevatedButton(
+                onPressed: () => navigateToShop(context, themeData),
+                child: Text(
+                  'Go to Shop',
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
       ),
-      home: getSimpleWall(context),
     );
   }
 
-  Widget getSimpleWall(BuildContext context) {
+  void navigateToShop(BuildContext context, ThemeData themeData) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => getShopPage(context, themeData),
+      ),
+    );
+  }
+
+  Widget getShopPage(BuildContext context, ThemeData themeData) {
     String bigTitle = 'Get Premium Membership';
+
+    Image image = Image.network(
+        'https://cdn0.iconfinder.com/data/icons/shopping-icons-part-1/512/shopping-12-512.png');
+
     List<WallDescription> wallDescriptions = List()
       ..add(
         WallDescription(
@@ -44,39 +77,36 @@ class MyApp extends StatelessWidget {
               'Reveal your creativity by customizing all the screens according to your preferences.',
         ),
       );
+
     String trialIndicator = 'Start with 1 week free trial';
-    String privacyPolicyText = 'Privacy Policy';
-    String privacyPolicyUrl = 'https://en.wikipedia.org/wiki/Privacy_policy';
-    String termsOfUseText = 'Terms of Use';
-    String termsOfUseUrl = 'https://en.wikipedia.org/wiki/Terms_of_service';
-    String bottomInfo =
-        'Payments are charged to the user’s Apple ID account at confirmation of purchase. Subscriptions automatically renew unless the user cancels at least 24 hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store.';
+
     List<PurchaseButtonModel> purchaseButtons = List()
       ..add(PurchaseButtonModel(
         text: '\$4.99 / Month',
-        onPressed: () => {},
+        onPressed: () => showSnackBarWithText(context, 'Enjoy for a month!'),
       ))
       ..add(PurchaseButtonModel(
         text: '\$23.99 / 6 Months',
         disclaimer: '(6 Months at 3.99/mo. Save 20%)',
-        onPressed: () => {},
+        onPressed: () => showSnackBarWithText(context, 'Enjoy for 6 months!'),
         bestOfferIndicator: true,
       ))
       ..add(PurchaseButtonModel(
         text: '\$29.99  / Year',
         disclaimer: '(12 Months at 2.49/mo. Save 50%)',
-        onPressed: () => {},
+        onPressed: () => showSnackBarWithText(context, 'Enjoy for 12 months!'),
       ));
 
-    Image image = Image.network(
-        'https://cdn0.iconfinder.com/data/icons/shopping-icons-part-1/512/shopping-12-512.png');
+    String privacyPolicyText = 'Privacy Policy';
 
-    ThemeData themeData = ThemeData.from(
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.yellow),
-      textTheme: GoogleFonts.pangolinTextTheme(
-        Theme.of(context).textTheme,
-      ),
-    );
+    String privacyPolicyUrl = 'https://en.wikipedia.org/wiki/Privacy_policy';
+
+    String termsOfUseText = 'Terms of Use';
+
+    String termsOfUseUrl = 'https://en.wikipedia.org/wiki/Terms_of_service';
+
+    String bottomInfo =
+        'Payments are charged to the user’s Apple ID account at confirmation of purchase. Subscriptions automatically renew unless the user cancels at least 24 hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store.';
 
     return PurchasePayWall(
       theme: themeData,
@@ -92,5 +122,17 @@ class MyApp extends StatelessWidget {
       purchaseButtons: purchaseButtons,
       image: image,
     ));
+  }
+
+  void showSnackBarWithText(BuildContext context, String text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
+        duration: Duration(seconds: 1),
+      ),
+    );
   }
 }

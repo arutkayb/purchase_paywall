@@ -48,19 +48,25 @@ class _SimpleWallState extends State<SimpleWall> {
         child: Container(
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: Icon(
-                      Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-                      color: _primaryForegroundColor,
-                    ),
-                  ),
-                ),
-              ),
+              widget._basicWallModel.showBackIcon ?? true
+                  ? Align(
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onTap: widget._basicWallModel.backIconTapped != null
+                            ? widget._basicWallModel.backIconTapped
+                            : () => Navigator.pop(context),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          child: Icon(
+                            Platform.isIOS
+                                ? Icons.arrow_back_ios
+                                : Icons.arrow_back,
+                            color: _primaryForegroundColor,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.fromLTRB(15, 10, 15, 15),

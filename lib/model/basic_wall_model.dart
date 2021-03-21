@@ -13,6 +13,8 @@ class BasicWallModel {
   final String bottomInfo;
   final List<PurchaseButtonModel> purchaseButtons;
   final Image image;
+  final bool showBackIcon;
+  final Function backIconTapped;
 
   BasicWallModel({
     this.bigTitle,
@@ -25,5 +27,7 @@ class BasicWallModel {
     this.bottomInfo,
     this.purchaseButtons,
     this.image,
+    this.backIconTapped,
+    this.showBackIcon,
   });
 }
