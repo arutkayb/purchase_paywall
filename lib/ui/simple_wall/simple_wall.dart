@@ -105,9 +105,7 @@ class _SimpleWallState extends State<SimpleWall> {
                       ),
                       Flexible(
                         flex: 3,
-                        child: Container(
-                          child: getPurchaseButtons(),
-                        ),
+                        child: getPurchaseButtons(),
                       ),
                     ],
                   ),
@@ -246,8 +244,8 @@ class _SimpleWallState extends State<SimpleWall> {
               ),
             )
           : Container(
-        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-            child: OutlinedButton(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: OutlinedButton(
                 onPressed: purchaseButton.onPressed,
                 child: text,
                 style: OutlinedButton.styleFrom(
@@ -258,12 +256,15 @@ class _SimpleWallState extends State<SimpleWall> {
                   ),
                 ),
               ),
-          );
+            );
 
       buttons.add(
-        Container(
-          width: double.maxFinite,
-          child: button,
+        Flexible(
+          child: Container(
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            width: double.maxFinite,
+            child: button,
+          ),
         ),
       );
     }
