@@ -121,6 +121,7 @@ class MyApp extends StatelessWidget {
       bottomInfo: bottomInfo,
       purchaseButtons: purchaseButtons,
       image: image,
+      autoPlayShowDuration: Duration(seconds: 2),
     ));
   }
 

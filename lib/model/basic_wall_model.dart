@@ -15,6 +15,7 @@ class BasicWallModel {
   final Image image;
   final bool showBackIcon;
   final Function backIconTapped;
+  final Duration autoPlayShowDuration;
 
   BasicWallModel({
     this.bigTitle,
@@ -29,5 +30,6 @@ class BasicWallModel {
     this.image,
     this.backIconTapped,
     this.showBackIcon,
+    this.autoPlayShowDuration,
   });
 }

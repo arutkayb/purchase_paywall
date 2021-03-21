@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:page_view_indicators/circle_page_indicator.dart';
+import 'package:purchase_paywall/custom_widget/custom_page_view.dart';
 import 'package:purchase_paywall/custom_widget/custom_widget_shaker.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
 import 'package:purchase_paywall/model/purchase_button_model.dart';
@@ -21,7 +21,6 @@ class SimpleWall extends StatefulWidget {
 }
 
 class _SimpleWallState extends State<SimpleWall> {
-  final _currentPageNotifier = ValueNotifier<int>(0);
   Color _primaryForegroundColor;
   Color _accentForeGroundColor;
 
@@ -141,9 +140,6 @@ class _SimpleWallState extends State<SimpleWall> {
   }
 
   Widget getPurchaseDescriptionTabs() {
-    final PageController wallDescriptionController =
-        PageController(initialPage: 0);
-
     List<Widget> pages = List();
     for (WallDescription wallDescription
         in widget._basicWallModel.wallDescriptions) {
@@ -188,27 +184,12 @@ class _SimpleWallState extends State<SimpleWall> {
       );
     }
 
-    return Column(
-      children: [
-        Expanded(
-          child: PageView(
-            scrollDirection: Axis.horizontal,
-            controller: wallDescriptionController,
-            children: pages,
-            onPageChanged: (int index) {
-              _currentPageNotifier.value = index;
-            },
-          ),
-        ),
-        CirclePageIndicator(
-          dotColor: widget._themeData.primaryColor,
-          selectedDotColor: _accentForeGroundColor,
-          borderColor: _accentForeGroundColor,
-          borderWidth: 2,
-          itemCount: pages.length,
-          currentPageNotifier: _currentPageNotifier,
-        ),
-      ],
+    return CustomPageView(
+      dotColor: widget._themeData.primaryColor,
+      selectedDotColor: _accentForeGroundColor,
+      borderColor: _accentForeGroundColor,
+      pages: pages,
+      autoPlayShowDuration: widget._basicWallModel.autoPlayShowDuration,
     );
   }
 
