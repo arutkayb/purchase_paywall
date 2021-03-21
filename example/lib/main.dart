@@ -26,6 +26,12 @@ class MyApp extends StatelessWidget {
     List<WallDescription> wallDescriptions = List()
       ..add(
         WallDescription(
+            title: 'Ad-Free Experience',
+            description:
+                'Do not let us earn money, Ad-Free Experience is the best.'),
+      )
+      ..add(
+        WallDescription(
           title: 'Unlimited Access',
           description: 'All the premium features are free for your usage.',
         ),
@@ -33,20 +39,15 @@ class MyApp extends StatelessWidget {
       ..add(
         WallDescription(
           title: 'Customizable Screen',
-          description: 'Reveal your creativity!',
-        ),
-      )
-      ..add(
-        WallDescription(
-          title: 'Ad-Free Experience',
+          description:
+              'Reveal your creativity by customizing all the screens according to your preferences.',
         ),
       );
     String trialIndicator = 'Start with 1 week free trial';
     String privacyPolicyText = 'Privacy Policy';
-    String privacyPolicyUrl = 'https://startflutter.com/privacy-policy/';
+    String privacyPolicyUrl = 'https://en.wikipedia.org/wiki/Privacy_policy';
     String termsOfUseText = 'Terms of Use';
-    String termsOfUseUrl =
-        'https://en.wikipedia.org/wiki/Terms_of_service#:~:text=Terms%20of%20service%20(also%20known,to%20use%20the%20offered%20service.';
+    String termsOfUseUrl = 'https://en.wikipedia.org/wiki/Terms_of_service';
     String bottomInfo =
         'Payments are charged to the user’s Apple ID account at confirmation of purchase. Subscriptions automatically renew unless the user cancels at least 24 hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store.';
     List<PurchaseButtonModel> purchaseButtons = List()
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
       ));
 
     Image image = Image.network(
-        'https://aws1.discourse-cdn.com/mcneel/uploads/default/optimized/3X/8/4/8403f58a4af8c97f635586223454a6f29e9fc1dc_2_500x500.png');
+        'https://cdn0.iconfinder.com/data/icons/shopping-icons-part-1/512/shopping-12-512.png');
 
     return PurchasePayWall().getSimplePaywall(
       BasicWallModel(

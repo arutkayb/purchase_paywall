@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
+import 'package:purchase_paywall/custom_widget/custom_widget_shaker.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
+import 'package:purchase_paywall/model/purchase_button_model.dart';
 import 'package:purchase_paywall/model/wall_description.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,6 +23,7 @@ class _SimpleWallState extends State<SimpleWall> {
   final _currentPageNotifier = ValueNotifier<int>(0);
   Color _primaryForegroundColor;
   Color _accentForeGroundColor;
+  Color _buttonForegroundColor;
 
   @override
   void initState() {
@@ -31,6 +34,11 @@ class _SimpleWallState extends State<SimpleWall> {
 
     _accentForeGroundColor =
         widget._themeData.accentColor.computeLuminance() > 0.5
+            ? Colors.black
+            : Colors.white;
+
+    _buttonForegroundColor =
+        widget._themeData.buttonColor.computeLuminance() > 0.5
             ? Colors.black
             : Colors.white;
   }
@@ -93,13 +101,11 @@ class _SimpleWallState extends State<SimpleWall> {
                       Container(
                         padding: EdgeInsets.all(5),
                         width: double.maxFinite,
-                        color: Colors.purpleAccent,
                         child: getTrialIndicator(),
                       ),
                       Flexible(
                         flex: 3,
                         child: Container(
-                          color: Colors.green,
                           child: getPurchaseButtons(),
                         ),
                       ),
@@ -126,7 +132,10 @@ class _SimpleWallState extends State<SimpleWall> {
   Widget getImage() {
     return FittedBox(
       fit: BoxFit.cover,
-      child: widget._basicWallModel.image,
+      child: Container(
+        constraints: BoxConstraints(minHeight: 1, minWidth: 1),
+        child: widget._basicWallModel.image,
+      ),
     );
   }
 
@@ -204,7 +213,65 @@ class _SimpleWallState extends State<SimpleWall> {
   }
 
   Widget getPurchaseButtons() {
-    return Container();
+    List<Widget> buttons = List();
+
+    for (PurchaseButtonModel purchaseButton
+        in widget._basicWallModel.purchaseButtons) {
+      Widget text = FittedBox(
+        child: Text(
+          purchaseButton.text,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: 24,
+            color: _buttonForegroundColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+
+      Widget button = purchaseButton.bestOfferIndicator
+          ? CustomWidgetShaker(
+              power: 1.5,
+              child: OutlinedButton(
+                onPressed: purchaseButton.onPressed,
+                child: text,
+                style: OutlinedButton.styleFrom(
+                  primary: _accentForeGroundColor,
+                  side: BorderSide(
+                    width: purchaseButton.bestOfferIndicator ? 2 : 1,
+                    color: _accentForeGroundColor,
+                  ),
+                ),
+              ),
+            )
+          : Container(
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: OutlinedButton(
+                onPressed: purchaseButton.onPressed,
+                child: text,
+                style: OutlinedButton.styleFrom(
+                  primary: _accentForeGroundColor,
+                  side: BorderSide(
+                    width: 1,
+                    color: _accentForeGroundColor,
+                  ),
+                ),
+              ),
+          );
+
+      buttons.add(
+        Container(
+          width: double.maxFinite,
+          child: button,
+        ),
+      );
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: buttons,
+    );
   }
 
   Widget getBigTitle() {

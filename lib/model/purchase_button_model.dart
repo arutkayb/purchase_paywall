@@ -8,6 +8,6 @@ class PurchaseButtonModel {
   PurchaseButtonModel({
     @required this.text,
     @required this.onPressed,
-    this.bestOfferIndicator,
-  });
+    bool bestOfferIndicator,
+  }) : this.bestOfferIndicator = bestOfferIndicator ?? false;
 }
