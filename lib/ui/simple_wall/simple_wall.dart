@@ -79,7 +79,7 @@ class _SimpleWallState extends State<SimpleWall> {
                         child: getBigTitle(),
                       ),
                       Flexible(
-                        flex: 5,
+                        flex: 4,
                         child: Center(
                           child: getImage(),
                         ),
@@ -258,15 +258,32 @@ class _SimpleWallState extends State<SimpleWall> {
               ),
             );
 
+      Widget disclaimer = (purchaseButton.disclaimer != null &&
+              purchaseButton.disclaimer.isNotEmpty)
+          ? FittedBox(
+              child: Text(
+                purchaseButton.disclaimer,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: _accentForeGroundColor,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            )
+          : Container();
+
       buttons.add(
         Flexible(
           child: Container(
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             width: double.maxFinite,
             child: button,
           ),
         ),
       );
+
+      buttons.add(disclaimer);
     }
 
     return Column(

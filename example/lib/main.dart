@@ -52,16 +52,18 @@ class MyApp extends StatelessWidget {
         'Payments are charged to the user’s Apple ID account at confirmation of purchase. Subscriptions automatically renew unless the user cancels at least 24 hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store.';
     List<PurchaseButtonModel> purchaseButtons = List()
       ..add(PurchaseButtonModel(
-        text: '\$2.99 / Week',
+        text: '\$4.99 / Month',
         onPressed: () => {},
       ))
       ..add(PurchaseButtonModel(
-        text: '\$3.99 / Month',
+        text: '\$23.99 / 6 Months',
+        disclaimer: '(6 Months at 3.99/mo. Save 20%)',
         onPressed: () => {},
         bestOfferIndicator: true,
       ))
       ..add(PurchaseButtonModel(
-        text: '\$4.99  / Year',
+        text: '\$23.99  / Year',
+        disclaimer: '(12 Months at 2.49/mo. Save 50%)',
         onPressed: () => {},
       ));
 
