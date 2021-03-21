@@ -1,6 +1,8 @@
 name: purchase_paywall
-description: In-app purchase, subscription, purchase paywall page
-version: 0.0.1
+description: In-app purchase, subscription, purchase paywall page. PurchasePayWall is providing different types of PayWalls to satisfy different purchase types and design needs. Paywall classes does not provide any functionality for purchase operations. You have to implement the purchase and pass the necessary callback functions to the desired PayWall class to make use of it.
+version: 0.0.2
+homepage: https://arutkayb.medium.com/payment-page-with-flutter-drive-your-users-to-purchase-c3a70e3743a4
+repository: https://github.com/arutkayb/purchase_paywall
 
 environment:
   sdk: ">=2.10.0 <3.0.0"

@@ -140,7 +140,7 @@ class _SimpleWallState extends State<SimpleWall> {
   }
 
   Widget getPurchaseDescriptionTabs() {
-    List<Widget> pages = List();
+    List<Widget> pages = [];
     for (WallDescription wallDescription
         in widget._basicWallModel.wallDescriptions) {
       pages.add(
@@ -205,7 +205,7 @@ class _SimpleWallState extends State<SimpleWall> {
   }
 
   Widget getPurchaseButtons() {
-    List<Widget> buttons = List();
+    List<Widget> buttons = [];
 
     for (PurchaseButtonModel purchaseButton
         in widget._basicWallModel.purchaseButtons) {
