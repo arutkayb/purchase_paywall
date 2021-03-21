@@ -24,10 +24,11 @@ class _SimpleWallState extends State<SimpleWall> {
   final _currentPageNotifier = ValueNotifier<int>(0);
   Color _primaryForegroundColor;
   Color _accentForeGroundColor;
-  Color _buttonForegroundColor;
 
   @override
   void initState() {
+    super.initState();
+
     _primaryForegroundColor =
         widget._themeData.backgroundColor.computeLuminance() > 0.5
             ? Colors.black
@@ -35,11 +36,6 @@ class _SimpleWallState extends State<SimpleWall> {
 
     _accentForeGroundColor =
         widget._themeData.accentColor.computeLuminance() > 0.5
-            ? Colors.black
-            : Colors.white;
-
-    _buttonForegroundColor =
-        widget._themeData.buttonColor.computeLuminance() > 0.5
             ? Colors.black
             : Colors.white;
   }
@@ -96,7 +92,7 @@ class _SimpleWallState extends State<SimpleWall> {
                         padding: EdgeInsets.all(5),
                         child: Divider(
                           color: Colors.black,
-                          thickness: 0.5,
+                          thickness: 1,
                         ),
                       ),
                       Container(
@@ -157,6 +153,8 @@ class _SimpleWallState extends State<SimpleWall> {
                   maxLines: 1,
                   maxFontSize: 28,
                   style: TextStyle(
+                    fontFamily:
+                        widget._themeData.textTheme.subtitle1.fontFamily,
                     fontSize: 28,
                     color: _accentForeGroundColor,
                   ),
@@ -171,6 +169,8 @@ class _SimpleWallState extends State<SimpleWall> {
                         wallDescription.description,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily:
+                              widget._themeData.textTheme.bodyText1.fontFamily,
                           fontSize: 20,
                           color: _accentForeGroundColor,
                         ),
@@ -210,6 +210,10 @@ class _SimpleWallState extends State<SimpleWall> {
     return Text(
       widget._basicWallModel.trialIndicator,
       textAlign: TextAlign.center,
+      style: TextStyle(
+        color: _accentForeGroundColor,
+        fontFamily: widget._themeData.textTheme.bodyText2.fontFamily,
+      ),
     );
   }
 
@@ -224,9 +228,22 @@ class _SimpleWallState extends State<SimpleWall> {
           textAlign: TextAlign.center,
           maxLines: 1,
           style: TextStyle(
+            fontFamily: widget._themeData.textTheme.button.fontFamily,
             fontSize: 24,
-            color: _buttonForegroundColor,
+            color: _accentForeGroundColor,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+
+      Widget buttonContent = OutlinedButton(
+        onPressed: purchaseButton.onPressed,
+        child: text,
+        style: OutlinedButton.styleFrom(
+          primary: _accentForeGroundColor,
+          side: BorderSide(
+            width: 1.5,
+            color: _accentForeGroundColor,
           ),
         ),
       );
@@ -234,31 +251,11 @@ class _SimpleWallState extends State<SimpleWall> {
       Widget button = purchaseButton.bestOfferIndicator
           ? CustomWidgetShaker(
               power: 1.5,
-              child: OutlinedButton(
-                onPressed: purchaseButton.onPressed,
-                child: text,
-                style: OutlinedButton.styleFrom(
-                  primary: _accentForeGroundColor,
-                  side: BorderSide(
-                    width: purchaseButton.bestOfferIndicator ? 2 : 1,
-                    color: _accentForeGroundColor,
-                  ),
-                ),
-              ),
+              child: buttonContent,
             )
           : Container(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              child: OutlinedButton(
-                onPressed: purchaseButton.onPressed,
-                child: text,
-                style: OutlinedButton.styleFrom(
-                  primary: _accentForeGroundColor,
-                  side: BorderSide(
-                    width: 1,
-                    color: _accentForeGroundColor,
-                  ),
-                ),
-              ),
+              child: buttonContent,
             );
 
       buttons.add(
@@ -277,6 +274,8 @@ class _SimpleWallState extends State<SimpleWall> {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   style: TextStyle(
+                    fontFamily:
+                        widget._themeData.textTheme.bodyText2.fontFamily,
                     fontSize: 14,
                     color: _accentForeGroundColor,
                     fontStyle: FontStyle.italic,
@@ -303,6 +302,7 @@ class _SimpleWallState extends State<SimpleWall> {
           textAlign: TextAlign.center,
           maxLines: 1,
           style: TextStyle(
+            fontFamily: widget._themeData.textTheme.headline1.fontFamily,
             fontSize: 42,
             color: _accentForeGroundColor,
             fontWeight: FontWeight.bold,
@@ -335,6 +335,7 @@ class _SimpleWallState extends State<SimpleWall> {
                 widget._basicWallModel.privacyPolicyText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: widget._themeData.textTheme.bodyText2.fontFamily,
                   color: textColor,
                   decoration: TextDecoration.underline,
                 ),
@@ -353,6 +354,7 @@ class _SimpleWallState extends State<SimpleWall> {
                 widget._basicWallModel.termsOfUseText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: widget._themeData.textTheme.bodyText2.fontFamily,
                   color: textColor,
                   decoration: TextDecoration.underline,
                 ),
@@ -369,6 +371,7 @@ class _SimpleWallState extends State<SimpleWall> {
               widget._basicWallModel.bottomInfo,
               textAlign: TextAlign.center,
               style: TextStyle(
+                fontFamily: widget._themeData.textTheme.bodyText2.fontFamily,
                 color: textColor,
               ),
             ),

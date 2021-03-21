@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:purchase_paywall/model/basic_wall_model.dart';
 import 'package:purchase_paywall/model/purchase_button_model.dart';
 import 'package:purchase_paywall/model/wall_description.dart';
@@ -17,11 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: getSimpleWall(),
+      home: getSimpleWall(context),
     );
   }
 
-  Widget getSimpleWall() {
+  Widget getSimpleWall(BuildContext context) {
     String bigTitle = 'Get Premium Membership';
     List<WallDescription> wallDescriptions = List()
       ..add(
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
         bestOfferIndicator: true,
       ))
       ..add(PurchaseButtonModel(
-        text: '\$23.99  / Year',
+        text: '\$29.99  / Year',
         disclaimer: '(12 Months at 2.49/mo. Save 50%)',
         onPressed: () => {},
       ));
@@ -70,19 +71,26 @@ class MyApp extends StatelessWidget {
     Image image = Image.network(
         'https://cdn0.iconfinder.com/data/icons/shopping-icons-part-1/512/shopping-12-512.png');
 
-    return PurchasePayWall().getSimplePaywall(
-      BasicWallModel(
-        bigTitle: bigTitle,
-        wallDescriptions: wallDescriptions,
-        trialIndicator: trialIndicator,
-        privacyPolicyText: privacyPolicyText,
-        privacyPolicyUrl: privacyPolicyUrl,
-        termsOfUseText: termsOfUseText,
-        termsOfUseUrl: termsOfUseUrl,
-        bottomInfo: bottomInfo,
-        purchaseButtons: purchaseButtons,
-        image: image,
+    ThemeData themeData = ThemeData.from(
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.yellow),
+      textTheme: GoogleFonts.pangolinTextTheme(
+        Theme.of(context).textTheme,
       ),
     );
+
+    return PurchasePayWall(
+      theme: themeData,
+    ).getSimplePaywall(BasicWallModel(
+      bigTitle: bigTitle,
+      wallDescriptions: wallDescriptions,
+      trialIndicator: trialIndicator,
+      privacyPolicyText: privacyPolicyText,
+      privacyPolicyUrl: privacyPolicyUrl,
+      termsOfUseText: termsOfUseText,
+      termsOfUseUrl: termsOfUseUrl,
+      bottomInfo: bottomInfo,
+      purchaseButtons: purchaseButtons,
+      image: image,
+    ));
   }
 }
