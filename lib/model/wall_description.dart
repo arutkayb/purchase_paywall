@@ -6,7 +6,7 @@ class WallDescription {
 
   WallDescription({
     @required String title,
-    @required String description,
+    String description,
   })  : _title = title,
         _description = description;
 

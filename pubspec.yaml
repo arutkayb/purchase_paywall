@@ -11,6 +11,7 @@ dependencies:
 
   flutter_simple_dependency_injection: 1.0.4
   url_launcher: 6.0.2
+  page_view_indicators: 2.0.0
 
 
 dev_dependencies:
