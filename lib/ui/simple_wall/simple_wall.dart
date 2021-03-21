@@ -11,20 +11,28 @@ class SimpleWall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: _themeData.backgroundColor,
       body: SafeArea(
         child: Container(
           child: Container(
             child: Column(
               children: <Widget>[
-                getBigTitle(),
+                Container(
+                  color: Colors.purple,
+                  child: getBigTitle(),
+                ),
                 Flexible(
                   flex: 5,
-                    child: Image.network(
-                        'https://aws1.discourse-cdn.com/mcneel/uploads/default/optimized/3X/8/4/8403f58a4af8c97f635586223454a6f29e9fc1dc_2_500x500.png')),
+                  child: Center(
+                    child: getImage(),
+                  ),
+                ),
                 Flexible(
                   flex: 2,
-                  child: getPurchaseDescriptionTabs(),
+                  child: Container(
+                    color: Colors.yellow,
+                    child: getPurchaseDescriptionTabs(),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10),
@@ -35,7 +43,10 @@ class SimpleWall extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 3,
-                  child: getPurchaseButtons(),
+                  child: Container(
+                    color: Colors.green,
+                    child: getPurchaseButtons(),
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.all(5),
@@ -55,34 +66,33 @@ class SimpleWall extends StatelessWidget {
     );
   }
 
+  Widget getImage() {
+    return FittedBox(
+      fit: BoxFit.cover,
+      child: _basicWallModel.image,
+    );
+  }
+
   Widget getPurchaseDescriptionTabs() {
-    return Container(
-      color: Colors.yellow,
-      child: Column(
-        children: <Widget>[
-          getSubTitle(),
-          getDescription(),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        getSubTitle(),
+        getDescription(),
+      ],
     );
   }
 
   Widget getPurchaseButtons() {
-    return Container(
-      color: Colors.green,
-    );
+    return Container();
   }
 
   Widget getBigTitle() {
-    return Container(
-      child: Center(
-        child: Text(
-          _basicWallModel.bigTitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 42),
-        ),
+    return Center(
+      child: Text(
+        _basicWallModel.bigTitle,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 42),
       ),
-      color: Colors.purple,
     );
   }
 
@@ -114,7 +124,7 @@ class SimpleWall extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             GestureDetector(
-              onTap: () async{
+              onTap: () async {
                 String url = _basicWallModel.privacyPolicyUrl;
                 if (await canLaunch(url)) {
                   await launch(url);
@@ -128,7 +138,7 @@ class SimpleWall extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () async{
+              onTap: () async {
                 String url = _basicWallModel.termsOfUseUrl;
                 if (await canLaunch(url)) {
                   await launch(url);

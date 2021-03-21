@@ -9,7 +9,7 @@ class PaywallFactoryImpl implements PaywallFactory {
 
   PaywallFactoryImpl() {
     _theme = ThemeData.from(
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.yellow),
     );
   }
 

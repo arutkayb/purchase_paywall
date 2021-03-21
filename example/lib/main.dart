@@ -52,6 +52,8 @@ class MyApp extends StatelessWidget {
         onPressed: () => {},
       ));
 
+    Image image = Image.network('https://aws1.discourse-cdn.com/mcneel/uploads/default/optimized/3X/8/4/8403f58a4af8c97f635586223454a6f29e9fc1dc_2_500x500.png');
+
     return PurchasePayWall().getSimplePaywall(
       BasicWallModel(
         bigTitle: bigTitle,
@@ -63,6 +65,7 @@ class MyApp extends StatelessWidget {
         termsOfUseUrl: termsOfUseUrl,
         bottomInfo: bottomInfo,
         purchaseButtons: purchaseButtons,
+        image: image,
       ),
     );
   }
