@@ -15,8 +15,8 @@ class DependencyManager {
   }
 
   void _initialize() {
-    injector.map<PaywallFactory>(
-      (i) => PaywallFactoryImpl(),
+    injector.map<PayWallFactory>(
+      (i) => PayWallFactoryImpl(),
       isSingleton: true,
     );
   }

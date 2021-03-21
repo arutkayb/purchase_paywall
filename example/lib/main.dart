@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
 
     return PurchasePayWall(
       theme: themeData,
-    ).getSimplePaywall(BasicWallModel(
+    ).getSimplePayWall(BasicWallModel(
       bigTitle: bigTitle,
       wallDescriptions: wallDescriptions,
       trialIndicator: trialIndicator,

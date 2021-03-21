@@ -7,14 +7,14 @@ import 'package:purchase_paywall/ui/paywall_factory.dart';
 import 'package:purchase_paywall/ui/simple_wall/simple_wall.dart';
 
 class PurchasePayWall {
-  PaywallFactory _paywallFactory;
+  PayWallFactory _payWallFactory;
   PurchasePayWall({ThemeData theme}) {
     final injector = DependencyManager().injector;
 
-    _paywallFactory = injector.get<PaywallFactory>();
-    _paywallFactory.setTheme(theme);
+    _payWallFactory = injector.get<PayWallFactory>();
+    _payWallFactory.setTheme(theme);
   }
 
-  SimpleWall getSimplePaywall(BasicWallModel basicWallModel) =>
-      _paywallFactory.getSimpleWall(basicWallModel);
+  SimpleWall getSimplePayWall(BasicWallModel basicWallModel) =>
+      _payWallFactory.getSimpleWall(basicWallModel);
 }
