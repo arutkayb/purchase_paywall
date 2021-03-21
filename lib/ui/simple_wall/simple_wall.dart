@@ -93,14 +93,14 @@ class _SimpleWallState extends State<SimpleWall> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(5),
                         child: Divider(
                           color: Colors.black,
                           thickness: 0.5,
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         width: double.maxFinite,
                         child: getTrialIndicator(),
                       ),
@@ -263,31 +263,34 @@ class _SimpleWallState extends State<SimpleWall> {
 
       buttons.add(
         Flexible(
-          child: Container(
-            width: double.maxFinite,
-            child: button,
-          ),
-        ),
-      );
-
-      buttons.add(
-        FittedBox(
-          child: Text(
-            purchaseButton.disclaimer ?? ' ',
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 14,
-              color: _accentForeGroundColor,
-              fontStyle: FontStyle.italic,
-            ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  child: button,
+                  width: double.maxFinite,
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  purchaseButton.disclaimer ?? ' ',
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: _accentForeGroundColor,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       );
     }
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: buttons,
     );
   }
