@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
@@ -146,17 +147,19 @@ class _SimpleWallState extends State<SimpleWall> {
         in widget._basicWallModel.wallDescriptions) {
       pages.add(
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FittedBox(
-              fit: BoxFit.cover,
-              child: Text(
-                wallDescription.title,
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: 26,
-                  color: _accentForeGroundColor,
+            Expanded(
+              child: Center(
+                child: AutoSizeText(
+                  wallDescription.title,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  maxFontSize: 28,
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: _accentForeGroundColor,
+                  ),
                 ),
               ),
             ),
@@ -164,11 +167,11 @@ class _SimpleWallState extends State<SimpleWall> {
                 ? Container()
                 : Expanded(
                     child: Center(
-                      child: Text(
+                      child: AutoSizeText(
                         wallDescription.description,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           color: _accentForeGroundColor,
                         ),
                       ),
@@ -258,22 +261,6 @@ class _SimpleWallState extends State<SimpleWall> {
               ),
             );
 
-      Widget disclaimer = (purchaseButton.disclaimer != null &&
-              purchaseButton.disclaimer.isNotEmpty)
-          ? FittedBox(
-              child: Text(
-                purchaseButton.disclaimer,
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: _accentForeGroundColor,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            )
-          : Container();
-
       buttons.add(
         Flexible(
           child: Container(
@@ -283,7 +270,20 @@ class _SimpleWallState extends State<SimpleWall> {
         ),
       );
 
-      buttons.add(disclaimer);
+      buttons.add(
+        FittedBox(
+          child: Text(
+            purchaseButton.disclaimer ?? ' ',
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 14,
+              color: _accentForeGroundColor,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
+      );
     }
 
     return Column(
