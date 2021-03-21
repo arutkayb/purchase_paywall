@@ -31,7 +31,7 @@ class _CustomPageViewState extends State<CustomPageView> {
   void initState() {
     super.initState();
 
-    if (widget.autoPlayShowDuration != null) {
+    if (widget.autoPlayShowDuration != null && widget.autoPlayShowDuration.inMilliseconds > 0) {
       Timer.periodic(widget.autoPlayShowDuration, (Timer timer) {
         if (_currentPage < widget.pages.length - 1) {
           _currentPage++;
